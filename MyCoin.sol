@@ -24,7 +24,7 @@ contract MyCoin {
         require(msg.sender == minter, "sender is not the minter");
         balances[receiver] += amount;
 
-    }
+    } 
 
     function Send(address receiver, uint amount) public {
 

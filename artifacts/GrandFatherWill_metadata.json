@@ -1,0 +1,76 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "payable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "execute",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "memberadress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "inherit",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"GrandFatherWill.sol": "GrandFatherWill"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"GrandFatherWill.sol": {
+			"keccak256": "0xc9701457e2870092e3118b585cac76fc35f81273d2159f061b5cc6fbb1b79907",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://52a185ba40a1adbc40ba9aa3c22083a3ea769c380f0acf14e7a145c3f03f51bb",
+				"dweb:/ipfs/QmXifT8hWU8kQRDghNXgSFd1uG6Wft7jhBMqHHScgUSywG"
+			]
+		}
+	},
+	"version": 1
+}

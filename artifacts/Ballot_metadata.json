@@ -1,0 +1,124 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_numProposals",
+						"type": "uint8"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [],
+				"name": "votingCompleted",
+				"type": "event"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "toVoter",
+						"type": "address"
+					}
+				],
+				"name": "register",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "stage",
+				"outputs": [
+					{
+						"internalType": "enum Ballot.Stage",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "toProposal",
+						"type": "uint8"
+					}
+				],
+				"name": "vote",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "winningProposal",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "_winningProposal",
+						"type": "uint8"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {
+				"constructor": "Create a new ballot with $(_numProposals) different proposals.",
+				"register(address)": {
+					"notice": "Give $(toVoter) the right to vote on this ballot. May only be called by $(chairperson)."
+				},
+				"vote(uint8)": {
+					"notice": "Give a single vote to proposal $(toProposal)."
+				}
+			}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ba.sol": "Ballot"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ba.sol": {
+			"keccak256": "0x4fb0e921180b5e32ef35bba5442dfb7ff2197dcd874d44a6e26e7189adabaa08",
+			"urls": [
+				"bzz-raw://2b44d7ef351ac92e547306da1e80292aac99e674718503b7134d9d6127e0557e",
+				"dweb:/ipfs/QmWA2dSc2zXbB6iwfKMToU2HP8jdWMydJmr85UPWYbAjjp"
+			]
+		}
+	},
+	"version": 1
+}
