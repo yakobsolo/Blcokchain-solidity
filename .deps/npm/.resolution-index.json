@@ -1,0 +1,23 @@
+{
+  "auctionversion1.sol": {
+    "__sources__": {
+      "auctionversion1.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.4.17;\n\ncontract Auction {\n\n    // Structure to hold details of the item\n    struct Item {\n        uint itemId; // ID of the item\n        uint[] itemTokens; // Tokens bid in favor of the item\n    }\n\n    // Structure to hold the details of a person\n    struct Person {\n        uint remainingTokens; // Tokens remaining with bidder\n        uint personId; // It serves as tokenId as well\n        address addr; // Address of the bidder\n    }\n\n    mapping(address => Person) tokenDetails; // Mapping address to person  \n    Person[4] bidders; // Array containing 4 person objects\n    Item[3] public items; // Array containing 3 item objects\n    address[3] public winners; // Array for address of winners\n    address public beneficiary; // Owner of the smart contract\n    \n    uint bidderCount = 0; // Counter\n\n    // Constructor\n    function Auction() public {\n        beneficiary = msg.sender;\n\n        // Initialize items\n        items[0] = Item({itemId: 0, itemTokens: new uint[](0)});\n        items[1] = Item({itemId: 1, itemTokens: new uint[](0)});\n        items[2] = Item({itemId: 2, itemTokens: new uint[](0)});\n    } \n\n    // Function to register bidders\n    function register() public payable {    \n        bidders[bidderCount].personId = bidderCount;\n        bidders[bidderCount].addr = msg.sender;\n        bidders[bidderCount].remainingTokens = 5; // Only 5 tokens\n        tokenDetails[msg.sender] = bidders[bidderCount];\n        bidderCount++;\n    } \n\n    // Function to bid\n    function bid(uint _itemId, uint _count) public {\n        require(tokenDetails[msg.sender].remainingTokens >= _count);\n        require(tokenDetails[msg.sender].remainingTokens > 0);\n        require(_itemId < 3);\n\n        tokenDetails[msg.sender].remainingTokens -= _count;\n        bidders[tokenDetails[msg.sender].personId].remainingTokens = tokenDetails[msg.sender].remainingTokens;\n\n        Item storage bidItem = items[_itemId];\n        for (uint i = 0; i < _count; i++) {\n            bidItem.itemTokens.push(tokenDetails[msg.sender].personId);\n        }\n    } \n\n\n\n    // Function to reveal winners\n    function revealWinners() public  {\n        for (uint id = 0; id < 3; id++) {\n            Item storage currentItem = items[id];\n            if (currentItem.itemTokens.length != 0) {\n                uint randomIndex = (block.number / currentItem.itemTokens.length) % currentItem.itemTokens.length;\n                uint winnerId = currentItem.itemTokens[randomIndex];\n                winners[id] = bidders[winnerId].addr;\n            }\n        }\n    }  \n\n    // Miscellaneous methods: Below methods are used to assist grading. Please DO NOT CHANGE THEM.\n    function getPersonDetails(uint id) public constant returns(uint, uint, address) {\n        return (bidders[id].remainingTokens, bidders[id].personId, bidders[id].addr);\n    }\n\n    function getItemDetails(uint id) public constant returns(uint, uint[]) {\n        return (items[id].itemId, items[id].itemTokens);\n    }\n}\n",
+        "file": "auctionversion1.sol"
+      }
+    }
+  },
+  "AddFiveStorage.sol": {
+    "./SimpleStorage.sol": "SimpleStorage.sol",
+    "__sources__": {
+      "AddFiveStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.18;\nimport {SimpleStorage} from \"./SimpleStorage.sol\";\n\ncontract AddFiveStorage is SimpleStorage {\n    function store(uint256 _newNumber) public override {\n        favoriteNumber = _newNumber + 5;\n    }\n}",
+        "file": "AddFiveStorage.sol"
+      },
+      "SimpleStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\n\n// pragma solidity 0.8.7;\n\npragma solidity ^0.8.0;\n// pragma solidity >=0.8.0 <0.9.0;\n\ncontract SimpleStorage {\n    uint256 favoriteNumber;\n\n    struct People {\n        uint256 favoriteNumber;\n        string name;\n    }\n    // uint256[] public anArray;\n    People[] public people;\n\n    mapping(string => uint256) public nameToFavoriteNumber;\n\n    function store(uint256 _favoriteNumber) public virtual  {\n        favoriteNumber = _favoriteNumber;\n    }\n\n    function retrieve() public view returns (uint256) {\n        return favoriteNumber;\n    }\n\n    function addPerson(string memory _name, uint256 _favoriteNumber) public {\n        people.push(People(_favoriteNumber, _name));\n        nameToFavoriteNumber[_name] = _favoriteNumber;\n    }\n}",
+        "file": "SimpleStorage.sol"
+      }
+    }
+  }
+}
